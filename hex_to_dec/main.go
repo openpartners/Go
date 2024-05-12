@@ -14,21 +14,32 @@ func main() {
 	// fmt.Println(input, i2, i3)
 	// fmt.Println(input)
 	var input string
-	fmt.Scanln(&input)
 
-	input = strings.ToLower(input)
+	for {
+		fmt.Scanln(&input)
 
-	if input == "stop" {
-		//...
-	}
+		input = strings.ToLower(input)
 
-	i := new(big.Int)
+		if input == "stop" {
+			break
+		}
 
-	convertedValue, ok := i.SetString(processHex(input), 16) // 0xabc123
-	if !ok {
-		fmt.Println("failed!")
-	} else {
-		fmt.Println(convertedValue, i)
+		i := new(big.Int)
+
+		// convertedValue, ok := i.SetString(processHex(input), 16) // 0xabc123
+		// _, ok := i.SetString(processHex(input), 16) // 0xabc123
+
+		// if !ok {
+		// 	fmt.Println("failed!")
+		// } else {
+		// 	// fmt.Println(convertedValue, i)
+		// 	fmt.Println(i)
+		// }
+		if _, ok := i.SetString(processHex(input), 16); !ok {
+			fmt.Println("Invalid hexadecimal number!")
+			continue // next iteration - for
+		}
+		fmt.Println(i)
 	}
 }
 
