@@ -31,11 +31,11 @@ func main() {
 		plaintext := getUserInput("Enter you text to cipher: ")
 		fmt.Println(plaintext)
 
-		cipherer.Cipher(plaintext, *secretKey)
+		fmt.Println(cipherer.Cipher(plaintext, *secretKey))
 	case "decipher":
 		cipheredText := getUserInput("Enter you ciphered data to decipher: ")
 
-		cipherer.Decipher(cipheredText, *secretKey)
+		fmt.Println(cipherer.Decipher(cipheredText, *secretKey))
 	default:
 		fmt.Println("Invalid mode. Use 'cipher' or 'decipher'.")
 		os.Exit(1)
@@ -61,3 +61,11 @@ func getUserInput(msg string) string {
 		return strings.TrimRight(result, "\n")
 	}
 }
+
+// ➜  xor git:(main) ✗ go run . --secret key
+// Enter you text to cipher:  test go lang
+//  test go lang
+// SxEcGBFZDApZBwQXDA==
+// ➜  xor git:(main) ✗ go run . --secret key --mode decipher
+// Enter you ciphered data to decipher: SxEcGBFZDApZBwQXDA==
+//  test go lang
